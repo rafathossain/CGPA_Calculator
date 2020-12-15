@@ -26,6 +26,8 @@
     <!-- Your custom styles (optional) -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
+    <link rel="icon" href="{% static 'logo/favicon.png' %}" sizes="16x16" type="image/png">
+
     <style>
         .hover-add:hover {
             color: forestgreen !important;
@@ -39,6 +41,36 @@
 
         .md-form {
             margin-bottom: 0 !important;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hover-add {
+                padding-top: 90% !important;
+            }
+
+            .hover-remove {
+                padding-top: 90% !important;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 992px) {
+            .hover-add {
+                padding-top: 40% !important;
+            }
+
+            .hover-remove {
+                padding-top: 40% !important;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .hover-add {
+                padding-top: 40% !important;
+            }
+
+            .hover-remove {
+                padding-top: 40% !important;
+            }
         }
     </style>
 </head>
@@ -101,9 +133,9 @@
                             </div>
                             <div class="col-2 text-right">
                                 <i class="fas fa-minus-circle hover-remove"
-                                   style="font-size: 25px; color: #ff3547; padding-top: 50%" hidden></i>
+                                   style="font-size: 25px; color: #ff3547;" hidden></i>
                                 <i class="fas fa-plus-circle hover-add"
-                                   style="font-size: 25px; color: #00c851; padding-top: 50%" onclick="addCourse()"></i>
+                                   style="font-size: 25px; color: #00c851;" onclick="addCourse()"></i>
                             </div>
                         </div>
                         <div class="row" id="course1">
@@ -122,9 +154,9 @@
                             </div>
                             <div class="col-2 text-right">
                                 <i class="fas fa-minus-circle hover-remove"
-                                   style="font-size: 25px; color: #ff3547; padding-top: 50%" hidden></i>
+                                   style="font-size: 25px; color: #ff3547;" hidden></i>
                                 <i class="fas fa-plus-circle hover-add"
-                                   style="font-size: 25px; color: #00c851; padding-top: 50%" onclick="addCourse()"></i>
+                                   style="font-size: 25px; color: #00c851;" onclick="addCourse()"></i>
                             </div>
                         </div>
                     </div>
@@ -142,6 +174,7 @@
                             </button>
                         </div>
                     </div>
+                    <a href="{% url 'home' %}" class="btn btn-dark">Change Language</a>
                     <a href="{% url 'bangla' %}" class="btn btn-danger">বাংলায় দেখুন</a>
                     <div class="pt-4 pb-4 text-center">
                         <small class="text-muted text-center mb-0">

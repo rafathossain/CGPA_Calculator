@@ -26,6 +26,8 @@
     <!-- Your custom styles (optional) -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
+    <link rel="icon" href="{% static 'logo/favicon.png' %}" sizes="16x16" type="image/png">
+
     <style>
         .hover-add:hover {
             color: forestgreen !important;
@@ -39,6 +41,36 @@
 
         .md-form {
             margin-bottom: 0 !important;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hover-add {
+                padding-top: 90% !important;
+            }
+
+            .hover-remove {
+                padding-top: 90% !important;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 992px) {
+            .hover-add {
+                padding-top: 40% !important;
+            }
+
+            .hover-remove {
+                padding-top: 40% !important;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .hover-add {
+                padding-top: 40% !important;
+            }
+
+            .hover-remove {
+                padding-top: 40% !important;
+            }
         }
     </style>
 </head>
@@ -143,6 +175,7 @@
                             </button>
                         </div>
                     </div>
+                    <a href="{% url 'home' %}" class="btn btn-dark">ভাষা পরিবর্তন</a>
                     <a href="{% url 'english' %}" class="btn btn-danger">Switch to English</a>
                     <div class="pt-4 pb-4 text-center">
                         <small class="text-muted text-center mb-0">
