@@ -1,0 +1,173 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <meta property="og:url" content="https://cgpacal.com"/>
+    <meta property="og:type" content="webite"/>
+    <meta property="og:title" content="CGPA Calculator"/>
+    <meta property="og:description"
+          content="Calculating CGPA depends on Every Semester GPA. Semester GPA Calculate by Grade Points and Credit. It’s very easy to calculate CGPA online and here you can find your GPA/CGPA easily. You need your grade or grade points and Credit."/>
+    <meta property="og:image"
+          content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>
+
+    <title>CGPA Calculator</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <style>
+        .hover-add:hover {
+            color: forestgreen !important;
+            cursor: pointer;
+        }
+
+        .hover-remove:hover {
+            color: darkred !important;
+            cursor: pointer;
+        }
+
+        .md-form {
+            margin-bottom: 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container p-4 mt-2 mb-2">
+    <div class="row">
+        <div class="col-12 col-lg-8 offset-lg-2">
+            <!-- Card -->
+            <div class="card">
+                <!-- Card content -->
+                <div class="card-body pt-5 text-center">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'logo/cgpa.png' %}" class="img-fluid" alt="cgcal_logo" width="40%">
+                    </a>
+                    <!-- Title -->
+                    <h6 class="card-title pt-4">
+                        Calculating CGPA depends on Every Semester GPA. Semester GPA Calculate by Grade Points and
+                        Credit. It’s very easy to calculate CGPA online and here you can find your GPA/CGPA easily. You
+                        need your grade or grade points and Credit.
+                        <br><br>
+                        If you want to calculate with previous semester result then check on Previous Semester Result
+                        Input or you can start calculating from the beginning.
+                    </h6>
+                    <br>
+                    <!-- Material unchecked -->
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" onchange="toggleOldInput()"
+                               id="materialUnchecked">
+                        <label class="form-check-label" for="materialUnchecked">Previous Semester Result Input</label>
+                    </div>
+                    <div id="oldInput" class="pl-lg-3 pr-lg-3" hidden>
+                        <!-- Material input -->
+                        <div class="md-form">
+                            <input type="number" step="any" id="creditEarned" onkeyup="calculate()"
+                                   class="form-control">
+                            <label for="creditEarned">Credit Earned</label>
+                        </div>
+                        <div class="md-form">
+                            <input type="number" step="any" id="currentCGPA" onkeyup="calculate()" class="form-control">
+                            <label for="currentCGPA">Current CGPA</label>
+                        </div>
+                    </div>
+                    <div id="currentCourse" class="pl-lg-3 pr-lg-3">
+                        <div class="row" id="dummyBlock" hidden>
+                            <div class="col-5">
+                                <div class="md-form">
+                                    <input type="number" step="any" id="credit" onkeyup="calculate()"
+                                           class="form-control">
+                                    <label for="credit">Credit</label>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="md-form">
+                                    <input type="number" step="any" id="gpa" onkeyup="calculate()"
+                                           class="form-control">
+                                    <label for="gpa">GPA</label>
+                                </div>
+                            </div>
+                            <div class="col-2 text-right">
+                                <i class="fas fa-minus-circle hover-remove"
+                                   style="font-size: 25px; color: #ff3547; padding-top: 50%" hidden></i>
+                                <i class="fas fa-plus-circle hover-add"
+                                   style="font-size: 25px; color: #00c851; padding-top: 50%" onclick="addCourse()"></i>
+                            </div>
+                        </div>
+                        <div class="row" id="course1">
+                            <div class="col-5">
+                                <div class="md-form">
+                                    <input type="number" step="any" id="credit" onkeyup="calculate()"
+                                           class="form-control">
+                                    <label for="credit">Credit</label>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="md-form">
+                                    <input type="number" step="any" id="gpa" onkeyup="calculate()" class="form-control">
+                                    <label for="gpa">GPA</label>
+                                </div>
+                            </div>
+                            <div class="col-2 text-right">
+                                <i class="fas fa-minus-circle hover-remove"
+                                   style="font-size: 25px; color: #ff3547; padding-top: 50%" hidden></i>
+                                <i class="fas fa-plus-circle hover-add"
+                                   style="font-size: 25px; color: #00c851; padding-top: 50%" onclick="addCourse()"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cgpaResult" class="row pt-4 pb-4 pl-lg-3 pr-lg-3">
+                        <div class="col-6">
+                            <button class="btn btn-primary btn-block">
+                                <h5><b>Credit</b></h5>
+                                <h1 class="mb-0"><b id="calc_credit">0.0</b></h1>
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-success btn-block">
+                                <h5><b>CGPA</b></h5>
+                                <h1 class="mb-0"><b id="calc_cgpa">0.00</b></h1>
+                            </button>
+                        </div>
+                    </div>
+                    <a href="{% url 'bangla' %}" class="btn btn-danger">বাংলায় দেখুন</a>
+                    <div class="pt-4 pb-4 text-center">
+                        <small class="text-muted text-center mb-0">
+                            Development: <a href="https://www.facebook.com/rafathossain.xyz/" target="_blank">Md. Rafat
+                            Hossain</a>
+                            {#                            <br>App Development: <a href="https://www.facebook.com/masumbillahsanjid/"#}
+                            {#                                                       target="_blank">মাসুম বিল্লাহ সানজিদ</a>#}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <!-- Card -->
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" defer></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}" defer></script>
+<script type="text/javascript" src="{% static 'js/cgcal.js' %}" defer></script>
+</body>
+
+</html>
