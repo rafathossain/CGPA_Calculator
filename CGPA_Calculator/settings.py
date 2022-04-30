@@ -74,16 +74,16 @@ WSGI_APPLICATION = 'CGPA_Calculator.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 
-if DEBUG:
+if not DEBUG:
     DATABASES = {
         # Production configuration
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'sql_gulshan_market',
+            'NAME': 'rafatme_cgpacal',
             'HOST': '127.0.0.1',
             'PORT': '3306',
-            'USER': 'sql_gulshan_market',
-            'PASSWORD': 'CGLA5ayPBrJM4BRG'
+            'USER': 'rafatme_cgpacal',
+            'PASSWORD': 'WapHDnfhG2AcRrRn'
         }
     }
 else:
