@@ -28,7 +28,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           command_timeout: 30m
           script: |
-            cd /home/docker_projects/Brain-Wave-Data-Logger
+            cd /home/docker_projects/CGPA_Calculator
             git stash
             git pull origin master
             chmod +x deployment/*
