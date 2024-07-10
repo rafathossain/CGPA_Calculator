@@ -1,4 +1,4 @@
-name: 🚀 Brain Wave Data Logger [MASTER]
+name: 🚀 CGPA Calculator [MASTER]
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: 'brain_wave_data_logger'
+          known_hosts: 'cgpa_calculator'
 
       - name: 🚚 Adding Known Hosts
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts

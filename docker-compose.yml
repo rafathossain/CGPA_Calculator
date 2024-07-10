@@ -1,12 +1,12 @@
 version: '3'
 
 networks:
-  brain_wave_data_logger_tier:
+  cgpa_calculator_tier:
     driver: bridge
 
 services:
-  brain_wave_data_logger_web:
-    container_name: brain_wave_data_logger
+  cgpa_calculator_web:
+    container_name: cgpa_calculator
     build:
       context: .
       dockerfile: Dockerfile
@@ -17,6 +17,6 @@ services:
     volumes:
       - .:/app
     ports:
-      - "127.0.0.1:20001:8001"
+      - "127.0.0.1:20003:8001"
     networks:
-      - brain_wave_data_logger_tier
+      - cgpa_calculator_tier
