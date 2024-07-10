@@ -23,14 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '61+hl)l-f8d32y(df$*l3y1rgq0uh(e%l$w@1$ai5lkohz&ca*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-DEVELOPMENT = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# Application definition
+CSRF_TRUSTED_ORIGINS = ['https://cgcal.rafat.me']
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -73,26 +72,12 @@ WSGI_APPLICATION = 'CGPA_Calculator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
-if not DEBUG:
-    DATABASES = {
-        # Production configuration
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'rafatme_cgpacal',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-            'USER': 'rafatme_cgpacal',
-            'PASSWORD': 'WapHDnfhG2AcRrRn'
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -131,5 +116,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "public/static")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")

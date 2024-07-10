@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+  brain_wave_data_logger_tier:
+    driver: bridge
+
+services:
+  brain_wave_data_logger_web:
+    container_name: brain_wave_data_logger
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ./deployment/start-app
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - "127.0.0.1:20001:8001"
+    networks:
+      - brain_wave_data_logger_tier
