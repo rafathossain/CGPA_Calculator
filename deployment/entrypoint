@@ -7,12 +7,4 @@ set -o pipefail
 # exits if any of your variables is not set
 set -o nounset
 
-source ./deployment/db_utils.sh
-
-until mariadb_ready; do
-  echo >&2 'Waiting for MariaDB to become available...'
-  sleep 2
-done
-echo >&2 'MariaDB is available'
-
 exec "$@"
